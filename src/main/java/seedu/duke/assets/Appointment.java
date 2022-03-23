@@ -21,10 +21,10 @@ public class Appointment {
     }
 
     public void show() {
-        UI.printParagraph("Patient: " + patientName + " (" + patientNric + ")\n" +
-                "Doctor: " + doctorName + " (" + doctorNric + ")\n" +
-                "Appointment date: " + appointmentDate + "\n" +
-                "Appointment details: " + appointmentDetails);
+        UI.printParagraph("Patient: " + patientName + " (" + patientNric + ")\n"
+                + "Doctor: " + doctorName + " (" + doctorNric + ")\n"
+                + "Appointment date: " + appointmentDate + "\n"
+                + "Appointment details: " + appointmentDetails);
         UI.printNewLineSeparator();
     }
 

@@ -56,11 +56,11 @@ public class AppointmentList {
             break;
         default:
             UI.printParagraph("Invalid search criteria! The valid criteria are:\n"
-            + "patient name\n"
-            + "doctor name\n"
-            + "date\n"
-            + "nric\n"
-            + "Please try again!");
+                + "patient name\n"
+                + "doctor name\n"
+                + "date\n"
+                + "nric\n"
+                + "Please try again!");
             break;
         }
     }
