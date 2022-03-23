@@ -27,7 +27,7 @@ public class UI {
         return parser.commandParser(userInput)[1].trim();
     }
 
-    public void printNewLineSeparator() {
+    public static void printNewLineSeparator() {
         System.out.println("-------------------------");
     }
 

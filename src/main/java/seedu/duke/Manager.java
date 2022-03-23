@@ -61,7 +61,7 @@ public class Manager {
                 ui.printBye();
                 break;
             default:
-                System.out.println(commandWord);
+                UI.printParagraph("I cannot recognize this command: " + commandWord);
                 break;
             }
             storage.saveData();

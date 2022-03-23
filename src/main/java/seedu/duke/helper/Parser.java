@@ -75,7 +75,7 @@ public class Parser {
         boolean isValid = validateAddPerson(Arrays.copyOfRange(parameters, 0, 6));
         //validate full name cause specialization is also j a name
         if (!validateFullName(parameters[6])) {
-            System.out.println("Specialization must be a name");
+            UI.printParagraph("Specialization must be a name");
             isValid = false;
         }
         return isValid;
@@ -116,7 +116,7 @@ public class Parser {
     private static boolean validateAddPatient(String[] parameters) {
         boolean isValid = validateAddPerson(Arrays.copyOfRange(parameters, 0, 6));
         if (!validateDate(parameters[6], "patient")) {
-            System.out.println("Date of birth must be in YYYY-MM-DD format. "
+            UI.printParagraph("Date of birth must be in YYYY-MM-DD format. "
                     + "It cannot be before 1980-01-01 or be today and after.");
             isValid = false;
         }
@@ -126,30 +126,30 @@ public class Parser {
     private static boolean validateAddAppointment(String[] parameters) {
         boolean isValid = true;
         if (!validateNric(parameters[0])) {
-            System.out.println("Patient NRIC must start with a capital letter, "
+            UI.printParagraph("Patient NRIC must start with a capital letter, "
                     + "followed by 7 digits and end with a capital letter.");
             isValid = false;
         }
         if (!validateFullName(parameters[1])) {
-            System.out.println("Patient name must contain only alphabets and no special characters.");
+            UI.printParagraph("Patient name must contain only alphabets and no special characters.");
             isValid = false;
         }
         if (!validateNric(parameters[2])) {
-            System.out.println("Doctor NRIC must start with a capital letter, "
+            UI.printParagraph("Doctor NRIC must start with a capital letter, "
                     + "followed by 7 digits and end with a capital letter.");
             isValid = false;
         }
         if (!validateFullName(parameters[3])) {
-            System.out.println("Doctor name must contain only alphabets and no special characters.");
+            UI.printParagraph("Doctor name must contain only alphabets and no special characters.");
             isValid = false;
         }
         if (!validateDate(parameters[4], "appointment")) {
-            System.out.println("Date of birth must be in YYYY-MM-DD format."
+            UI.printParagraph("Date of birth must be in YYYY-MM-DD format."
                     + "It cannot be today or before.");
             isValid = false;
         }
         if (!validateAppointmentDetails(parameters[5])) {
-            System.out.println("Appointment details cannot be empty. Please indicate some details.");
+            UI.printParagraph("Appointment details cannot be empty. Please indicate some details.");
             isValid = false;
         }
         return isValid;
