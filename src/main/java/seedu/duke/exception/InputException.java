@@ -5,4 +5,8 @@ public class InputException extends HalpmiException {
         super(message);
     }
 
+    public InputException() {
+        super("There is one or more parameters missing! Please type help for a full list of commands.");
+    }
+
 }

@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.exception.DuplicateEntryException;
+import seedu.duke.exception.HalpmiException;
 import seedu.duke.exception.InputException;
 import seedu.duke.exception.NotFoundException;
 import seedu.duke.helper.command.Command;
@@ -26,13 +27,12 @@ public class Manager {
             ui.printPrompt();
             String commandWord = ui.readCommand();
             String parameters = ui.readParameters();
-            Status status = null;
             try {
-                status = executeCommand(commandWord, parameters);
-            } catch (InputException | NotFoundException | DuplicateEntryException e) {
+                Status status = executeCommand(commandWord, parameters);
+                UI.printParagraph(status.getSuccessMessage());
+            } catch (HalpmiException e ) {
                 ui.printParagraph(e.toString());
             }
-            ui.print(status);
             storage.saveData();
         }
     }
@@ -96,7 +96,7 @@ public class Manager {
             isTerminated = true;
             break;
         default:
-            System.out.println(commandWord);
+            status = Status.NOT_RECOGNISED;
             break;
         }
         return status;

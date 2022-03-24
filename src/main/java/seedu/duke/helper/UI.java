@@ -135,7 +135,4 @@ public class UI {
                 + "Here is an example:\ndelete patient /info 1");
     }
 
-    public void print(Status status) {
-        
-    }
 }

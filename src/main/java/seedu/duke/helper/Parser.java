@@ -22,14 +22,14 @@ public class Parser {
         try {
             String[] parametersArray = parameters.split(",");
             if (parametersArray.length != length) {
-                throw new InputException("There is one or more parameters missing");
+                throw new InputException();
             }
             for (int i = 0; i < parametersArray.length; i++) {
                 parametersArray[i] = parametersArray[i].trim();
             }
             return parametersArray;
         } catch (Exception e) {
-            throw new InputException("There is one or more parameters missing");
+            throw new InputException();
         }
     }
 
