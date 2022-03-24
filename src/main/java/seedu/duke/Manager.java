@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.exception.DuplicateEntryException;
-import seedu.duke.exception.HalpmiException;
+import seedu.duke.exception.InputException;
 import seedu.duke.exception.NotFoundException;
 import seedu.duke.helper.command.Command;
 import seedu.duke.helper.Parser;
@@ -29,7 +29,7 @@ public class Manager {
             Status status = null;
             try {
                 status = executeCommand(commandWord,parameters);
-            } catch (HalpmiException | NotFoundException | DuplicateEntryException e) {
+            } catch (InputException | NotFoundException | DuplicateEntryException e) {
                 ui.printParagraph(e.toString());
             }
             ui.print(status);
@@ -37,7 +37,7 @@ public class Manager {
         }
     }
 
-    private Status executeCommand(String commandWord, String parameters) throws HalpmiException, NotFoundException,
+    private Status executeCommand(String commandWord, String parameters) throws InputException, NotFoundException,
             DuplicateEntryException {
         Command command;
         Status status = null;
