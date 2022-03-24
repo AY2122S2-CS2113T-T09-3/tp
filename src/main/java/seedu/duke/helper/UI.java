@@ -136,5 +136,6 @@ public class UI {
     }
 
     public void print(Status status) {
+        
     }
 }

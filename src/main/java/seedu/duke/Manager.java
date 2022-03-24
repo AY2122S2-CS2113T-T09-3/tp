@@ -28,7 +28,7 @@ public class Manager {
             String parameters = ui.readParameters();
             Status status = null;
             try {
-                status = executeCommand(commandWord,parameters);
+                status = executeCommand(commandWord, parameters);
             } catch (InputException | NotFoundException | DuplicateEntryException e) {
                 ui.printParagraph(e.toString());
             }

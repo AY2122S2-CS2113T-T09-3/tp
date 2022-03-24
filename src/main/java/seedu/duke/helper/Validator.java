@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 public class Validator {
 
     /* Validating person attributes */
-
     public static void validateNric(String nric) throws InputException {
         Pattern nricPattern = Pattern.compile("[A-Z][0-9]{7}[A-Z]");
         Matcher nricMatcher = nricPattern.matcher(nric);
@@ -76,7 +75,6 @@ public class Validator {
         }
     }
 
-    // todo : admission date logic (w respect to dob)
     private static void validateAdmissionDate(String admissionDateString) throws InputException {
         LocalDate admissionDate;
         try {
