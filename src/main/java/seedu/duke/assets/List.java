@@ -14,4 +14,6 @@ public abstract class List {
     public abstract void view(String parameter);
 
     public abstract void edit(String[] parameters) throws NotFoundException;
+
+    public abstract void find(String[] parameters) throws NotFoundException;
 }

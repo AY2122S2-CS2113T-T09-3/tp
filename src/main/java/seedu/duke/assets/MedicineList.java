@@ -65,8 +65,10 @@ public class MedicineList extends List {
         CommandLineTable medicineTable = new CommandLineTable();
         medicineTable.setShowVerticalLines(true);
         medicineTable.setHeaders("MedicineId", "MedicineName","Dosage", "Expiry", "SideEffects", "Quantity");
-        medicineTable.addRow(medicine.getMedicineId(), medicine.getMedicineName(), String.valueOf(medicine.getDosage()),
-                medicine.getExpiry(), medicine.getSideEffects(), String.valueOf(medicine.getQuantity()));
+        medicineTable.addRow(medicine.getMedicineId(), medicine.getMedicineName(),
+                String.valueOf(medicine.getDosage()),
+                medicine.getExpiry(), medicine.getSideEffects(),
+                String.valueOf(medicine.getQuantity()));
         medicineTable.print();
     }
 
@@ -76,9 +78,11 @@ public class MedicineList extends List {
         medicineTable.setShowVerticalLines(true);
         medicineTable.setHeaders("MedicineId", "MedicineName","Dosage", "Expiry", "SideEffects", "Quantity");
 
-        for(Medicine medicine: medicines){
-            medicineTable.addRow(medicine.getMedicineId(), medicine.getMedicineName(), String.valueOf(medicine.getDosage()),
-                    medicine.getExpiry(), medicine.getSideEffects(), String.valueOf(medicine.getQuantity()));
+        for (Medicine medicine: medicines) {
+            medicineTable.addRow(medicine.getMedicineId(), medicine.getMedicineName(),
+                    String.valueOf(medicine.getDosage()),
+                    medicine.getExpiry(), medicine.getSideEffects(),
+                    String.valueOf(medicine.getQuantity()));
         }
         medicineTable.print();
     }

@@ -34,7 +34,7 @@ public class Manager {
             } catch (HalpmiException | NotFoundException | DuplicateEntryException e) {
                 ui.printParagraph(e.toString());
             }
-            ui.print(status);
+            //ui.print(status);
             storage.saveData();
         }
     }

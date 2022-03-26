@@ -21,7 +21,7 @@ public class PatientList extends List {
         return null;
     }
 
-    public void find(String[] command){
+    public void find(String[] command) {
     }
 
 
@@ -50,29 +50,30 @@ public class PatientList extends List {
         return (patient.getPatientNric() + ": "
                 + patient.getPatientName() + ", "
                 + Integer.toString(patient.getPatientAge()) + ", " + patient.getPatientAddress() + ", "
-                + patient.getPatientGender() + ", " + patient.getPatientDOB() + ", " + patient.getDateOfAdmission());
+                + patient.getPatientGender() + ", " + patient.getPatientDob() + ", " + patient.getDateOfAdmission());
     }
 
     public int getSize() {
         return patients.size();
     }
-/*
-    public void view() {
-        if (getSize() == 0) {
-            UI.printParagraph("There are no patients currently.");
-            return;
-        }
-        UI.printParagraph("Here is the list of patients");
 
-        for (Patient patient : patients) {
-            UI.printCont(getPatientInfo(patient));
+    /*
+        public void view() {
+            if (getSize() == 0) {
+                UI.printParagraph("There are no patients currently.");
+                return;
+            }
+            UI.printParagraph("Here is the list of patients");
 
+            for (Patient patient : patients) {
+                UI.printCont(getPatientInfo(patient));
+
+            }
+            UI.printParagraph(toString());
+            UI.printCont("There are a total of " + Integer.toString(patients.size())
+                    + " in the system.");
         }
-        UI.printParagraph(toString());
-        UI.printCont("There are a total of " + Integer.toString(patients.size())
-                + " in the system.");
-    }
-*/
+    */
     //view particular patient
     public void view(String nric) {
         Patient patient = getPatient(nric);
@@ -82,30 +83,32 @@ public class PatientList extends List {
         }
         CommandLineTable patientTable = new CommandLineTable();
         patientTable.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
-        patientTable.setHeaders("Nric", "FullName","Age", "Address", "Gender", "Dob",
+        patientTable.setHeaders("Nric", "FullName", "Age", "Address", "Gender", "Dob",
                 "DateAdmission");
-        patientTable.addRow(patient.getPatientNric(), patient.getPatientName(), String.valueOf(patient.getPatientAge()),
-                patient.getPatientAddress(), String.valueOf(patient.getPatientGender()), patient.getPatientDOB(),
+        patientTable.addRow(patient.getPatientNric(), patient.getPatientName(),
+                String.valueOf(patient.getPatientAge()),
+                patient.getPatientAddress(), String.valueOf(patient.getPatientGender()), patient.getPatientDob(),
                 patient.getDateOfAdmission());
         patientTable.print();
     }
 
 
-
     //view all patients
-    public void view(){
+    public void view() {
         CommandLineTable patientTable = new CommandLineTable();
         //st.setRightAlign(true);//if true then cell text is right aligned
         patientTable.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
-        patientTable.setHeaders("Nric", "FullName","Age", "Address", "Gender", "Dob",
+        patientTable.setHeaders("Nric", "FullName", "Age", "Address", "Gender", "Dob",
                 "DateAdmission");
-        for(Patient patient: patients){
-            patientTable.addRow(patient.getPatientNric(), patient.getPatientName(), String.valueOf(patient.getPatientAge()),
-                    patient.getPatientAddress(), String.valueOf(patient.getPatientGender()), patient.getPatientDOB(),
-            patient.getDateOfAdmission());
+        for (Patient patient : patients) {
+            patientTable.addRow(patient.getPatientNric(), patient.getPatientName(),
+                    String.valueOf(patient.getPatientAge()),
+                    patient.getPatientAddress(), String.valueOf(patient.getPatientGender()), patient.getPatientDob(),
+                    patient.getDateOfAdmission());
         }
         patientTable.print();
     }
+
     public void remove(String nric) throws NotFoundException {
         for (int i = 0; i < getSize(); i++) {
             if (patients.get(i).getNric().equals(nric)) {
