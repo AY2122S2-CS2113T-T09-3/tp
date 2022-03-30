@@ -1,7 +1,7 @@
 package seedu.duke.assets;
 
 import seedu.duke.exception.DuplicateEntryException;
-import seedu.duke.exception.HalpmiException;
+import seedu.duke.exception.UserInputErrorException;
 import seedu.duke.exception.NotFoundException;
 import seedu.duke.helper.CommandLineTable;
 import seedu.duke.helper.UI;
@@ -72,13 +72,13 @@ public class AppointmentList extends List {
     }
 
     @Override
-    public void view() throws HalpmiException {
+    public void view() throws UserInputErrorException {
         CommandLineTable appointmentTable = new CommandLineTable();
         appointmentTable.setShowVerticalLines(true);
         appointmentTable.setHeaders("Appointment Id", "Patient Name", "Patient NRIC", "Doctor Name", "Doctor NRIC",
                 "Appointment Date", "Appointment Details");
         if (appointments.size() == 0) {
-            throw new HalpmiException("Appointment list is empty, please add appointment");
+            throw new UserInputErrorException("Appointment list is empty, please add appointment");
         }
         for (Appointment appointment : appointments) {
             appointmentTable.addRow(appointment.getAppointmentId(), appointment.getPatientName(),
@@ -89,10 +89,10 @@ public class AppointmentList extends List {
     }
 
     @Override
-    public void view(String appointmentId) throws HalpmiException {
+    public void view(String appointmentId) throws UserInputErrorException {
         Appointment foundAppointment = getAppointment(appointmentId);
         if (foundAppointment == null) {
-            throw new HalpmiException("Appointment doesn't exist please try again!");
+            throw new UserInputErrorException("Appointment doesn't exist please try again!");
         }
         CommandLineTable appointmentTable = new CommandLineTable();
         appointmentTable.setShowVerticalLines(true);
