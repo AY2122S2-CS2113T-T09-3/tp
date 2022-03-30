@@ -1,7 +1,7 @@
 package seedu.duke.exception;
 
-public class UserInputErrorException extends Exception {
-    public UserInputErrorException(String message) {
+public class HalpmiException extends Exception {
+    public HalpmiException(String message) {
         super(message);
     }
 
