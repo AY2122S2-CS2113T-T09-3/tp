@@ -1,16 +1,21 @@
 package seedu.duke.helper;
 
+import seedu.duke.exception.HalpmiException;
 import seedu.duke.exception.UserInputErrorException;
 import seedu.duke.helper.command.AddAppointmentCommand;
 import seedu.duke.helper.command.AddDoctorCommand;
 import seedu.duke.helper.command.AddMedicineCommand;
 import seedu.duke.helper.command.AddPatientCommand;
+import seedu.duke.helper.command.CheckIfAppointmentTodayCommand;
+import seedu.duke.helper.command.CheckIfDoctorExistsCommand;
+import seedu.duke.helper.command.CheckIfPatientExistsCommand;
 import seedu.duke.helper.command.ClearExpiredMedicineCommand;
 import seedu.duke.helper.command.Command;
 import seedu.duke.helper.command.DeleteAppointmentCommand;
 import seedu.duke.helper.command.DeleteDoctorCommand;
 import seedu.duke.helper.command.DeleteMedicineCommand;
 import seedu.duke.helper.command.DeletePatientCommand;
+import seedu.duke.helper.command.DispenseMedicineCommand;
 import seedu.duke.helper.command.EditAppointmentCommand;
 import seedu.duke.helper.command.EditDoctorCommand;
 import seedu.duke.helper.command.EditMedicineCommand;
@@ -19,6 +24,7 @@ import seedu.duke.helper.command.FindAppointmentCommand;
 import seedu.duke.helper.command.FindDoctorCommand;
 import seedu.duke.helper.command.FindMedicineCommand;
 import seedu.duke.helper.command.FindPatientCommand;
+import seedu.duke.helper.command.CheckForMedicineStockCommand;
 import seedu.duke.helper.command.UpdateMedicineInventoryCommand;
 import seedu.duke.helper.command.ViewAppointmentCommand;
 import seedu.duke.helper.command.ViewDoctorCommand;
@@ -43,6 +49,19 @@ public class Parser {
             return parametersArray;
         } catch (Exception e) {
             throw new UserInputErrorException("There is one or more parameters missing");
+        }
+    }
+
+    private static String[] parameterCheckOpenLength(String parameters) throws HalpmiException {
+        try {
+            String[] parametersArray = parameters.split(",");
+
+            for (int i = 0; i < parametersArray.length; i++) {
+                parametersArray[i] = parametersArray[i].trim();
+            }
+            return parametersArray;
+        } catch (Exception e) {
+            throw new HalpmiException("There is one or more parameters missing");
         }
     }
 
@@ -139,13 +158,43 @@ public class Parser {
         return new ClearExpiredMedicineCommand();
     }
 
-    public static Command parseAddAppointment(String parameters) throws UserInputErrorException {
-        String[] addAppointmentParameters = minParameterCheck(parameters, 7);
+    public static Command parseDispenseMedicine(String parameters) throws HalpmiException {
+        String[] dispenseMedicineParameters = parameterCheckOpenLength(parameters);
+        Validator.validateDispenseMedicine(dispenseMedicineParameters);
+        return new DispenseMedicineCommand(dispenseMedicineParameters);
+    }
+
+    public static Command parseCheckMedicineStock(String parameters) throws HalpmiException {
+        String[] retrieveMedicineParameters = parameterCheckOpenLength(parameters);
+        return new CheckForMedicineStockCommand(retrieveMedicineParameters);
+    }
+
+    public static Command parseCheckForPatientAppointment(String parameters) throws HalpmiException {
+        String[] checkForPatientAppointmentParameters = parameterCheckOpenLength(parameters);
+        return new CheckIfAppointmentTodayCommand(checkForPatientAppointmentParameters);
+    }
+
+    public static Command parseAddAppointment(String parameters) throws HalpmiException {
+        String[] addAppointmentParameters = minParameterCheck(parameters, 4);
         Validator.validateAddAppointment(addAppointmentParameters);
         return new AddAppointmentCommand(addAppointmentParameters);
     }
 
-    public static Command parseViewAppointment(String parameters) throws UserInputErrorException {
+
+    public static Command checkIfPatientExists(String parameters) throws HalpmiException {
+        String[] checkIfPatientExistsParameters = minParameterCheck(parameters, 4);
+        Validator.validateAddAppointment(checkIfPatientExistsParameters);
+        return new CheckIfPatientExistsCommand(checkIfPatientExistsParameters);
+    }
+
+    public static Command checkIfDoctorExists(String parameters) throws HalpmiException {
+        String[] checkIfDoctorExistsParameters = minParameterCheck(parameters, 4);
+        Validator.validateAddAppointment(checkIfDoctorExistsParameters);
+        return new CheckIfDoctorExistsCommand(checkIfDoctorExistsParameters);
+    }
+
+
+    public static Command parseViewAppointment(String parameters) throws HalpmiException {
         if (isNull(parameters)) {
             return new ViewAppointmentCommand(null);
         }
